@@ -205,7 +205,7 @@ function Store({ add }) {
                     <div
                         className="track-Store"
                         style={{
-                            transform: `translateX(-${index2 * 320}px)`
+                            transform: `translateX(-${index2 * 380}px)`
                         }}
                     >
                         {movies2.map((movie) => {

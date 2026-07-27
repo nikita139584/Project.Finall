@@ -767,7 +767,6 @@ h1 {
 
 .track-Store {
     display: flex;
-    gap: 24px;
     transition: transform .6s cubic-bezier(.22, 1, .36, 1);
     will-change: transform;
 }
