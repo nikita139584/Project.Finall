@@ -1288,15 +1288,23 @@ h1 {
     .storeProducts-header h1 {
         font-size: 36px;
     }
+
     .storeProducts-header h2 {
         font-size: 20px;
     }
+
     .storeProducts-card {
-        width: 380px;
-        height: 540px;
+        flex: 0 0 320px;
+        width: 320px;
+        height: 560px;
     }
+
+    .storeProducts-card img {
+        height: 220px;
+    }
+
     .storeProducts-window {
-        padding: 0 40px;
+        padding: 0 20px;
     }
 }
 
