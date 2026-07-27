@@ -928,18 +928,21 @@ h1 {
 }
 
 .Store-H1 ~ .slider-Store .card-Store button {
-    align-self: flex-start;
-    margin: 12px 0 18px;
-    padding: 9px 18px;
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    padding: 12px 20px;
+
     border: none;
-    border-radius: 980px;
-    font-size: 13px;
-    font-weight: 500;
+    border-radius: 999px;
+
     background: #0071e3;
-    color: #fff;
+    color: white;
+
+    font-size: 16px;
+    font-weight: 500;
+
     cursor: pointer;
-    text-align: center;
-    transition: background .2s ease, transform .1s ease;
 }
 
 .Store-H1 ~ .slider-Store .card-Store button:hover {
@@ -1036,17 +1039,24 @@ h1 {
     color: #b5b5b5;
 }
 
-@media (max-width: 900px) {
-    .Store-Header h1 {
-        font-size: 36px;
+@media (max-width:900px){
+
+    .Store-H1 ~ .slider-Store .card-Store{
+        width:240px;
+        height:500px;   /* вместо 380 */
     }
-    .Store-H1 h1,
-    .Store-H1 p {
-        font-size: 24px;
+
+    .Store-H1 ~ .slider-Store .card-Store img{
+        max-width:170px;
+        max-height:130px;
     }
-    .Store-H1 ~ .slider-Store .card-Store {
-        width: 240px;
-        height: 380px;
+
+    .Store-H1 ~ .slider-Store .card-Store h1{
+        font-size:20px;
+    }
+
+    .Store-H1 ~ .slider-Store .card-Store h2{
+        font-size:14px;
     }
 }
 /* ============================================================
