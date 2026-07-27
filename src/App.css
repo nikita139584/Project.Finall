@@ -1285,25 +1285,20 @@ h1 {
 }
 
 @media (max-width: 900px) {
-    .storeProducts-header h1 {
-        font-size: 36px;
-    }
-
-    .storeProducts-header h2 {
-        font-size: 20px;
-    }
-
     .storeProducts-card {
         flex: 0 0 360px;
         width: 360px;
         height: 620px;
     }
 
+    .storeProducts-card img {
+        height: 220px;
+    }
+
     .storeProducts-window {
-        padding: 0 40px;
+        padding: 0 20px;
     }
 }
-
 
 /* ============================================================
    COMMENT WIDGET
