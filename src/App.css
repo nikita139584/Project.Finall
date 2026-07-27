@@ -1294,17 +1294,13 @@ h1 {
     }
 
     .storeProducts-card {
-        flex: 0 0 320px;
-        width: 320px;
-        height: 560px;
-    }
-
-    .storeProducts-card img {
-        height: 220px;
+        flex: 0 0 360px;
+        width: 360px;
+        height: 620px;
     }
 
     .storeProducts-window {
-        padding: 0 20px;
+        padding: 0 40px;
     }
 }
 
