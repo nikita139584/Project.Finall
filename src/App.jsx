@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useReducer } from "react";
-
+// Корзина хранится именно в App,
+// потому что она нужна сразу нескольким страницам.
+// App — их ближайший общий родитель.
 // Подключаем все компоненты
 import Header from "/src/components/Header";
-import Photo from "/src/components/Photo";
-import PhotoMini from "/src/components/PhotoMini";
 import Menu from "/src/components/Menu.jsx";
 import Store from "/src/components/Store";
 import StoreMac from "/src/Store/StoreMac.jsx";
@@ -28,51 +28,56 @@ function Home() {
             {/* Верхняя часть сайта */}
             <Header />
 
-            {/* Большие фотографии */}
-            <Photo />
-
-            {/* Мини-слайдер */}
-            <PhotoMini />
         </>
     );
 }
 
-// Reducer отвечает за изменения корзины
-// state - текущая корзина
-// action - действие которое нужно выполнить
+// Reducer отвечает за все изменения корзины.
+// Если потом появятся новые действия, достаточно будет добавить новый case.
 function cartReducer(state, action) {
     switch (action.type) {
 
-        // Добавление товара
         case "add": {
 
-            // Проверяем есть ли уже такой товар в корзине
+            // Ищем первый товар с таким же id
             const exists = state.find(item => item.id === action.product.id);
 
-            // Если товар уже есть
+            // Если товар уже есть в корзине
             if (exists) {
 
-                // Проходим по всей корзине
-                // Если id совпадает увеличиваем количество
+                // map проходит по всему массиву и создаёт новый массив
+                // Если id совпал - увеличиваем count
+                // Если нет - оставляем товар без изменений
                 return state.map(item =>
                     item.id === action.product.id
-                        ? { ...item, count: item.count + 1 }
+                        ? {
+                            // Копируем все свойства старого объекта
+                            // и меняем только count
+                            ...item,
+                            count: item.count + 1
+                        }
                         : item
                 );
             }
 
-
-            // Если товара ещё нет
-            // Добавляем его в массив и сразу ставим количество 1
-            return [...state, { ...action.product, count: 1 }];
-
+            // Если такого товара ещё нет
+            // Создаём новый массив, копируем старый
+            // и добавляем новый товар с количеством 1
+            return [
+                ...state,
+                {
+                    ...action.product,
+                    count: 1
+                }
+            ];
         }
 
-        // Удаляет последний товар из корзины
+        // Удаляем последний товар из корзины
         case "delete":
             return state.slice(0, -1);
 
-        // Если действие неизвестно просто возвращаем старую корзину
+        // Если пришёл неизвестный type,
+        // просто возвращаем старую корзину
         default:
             return state;
     }
@@ -80,49 +85,61 @@ function cartReducer(state, action) {
 
 function App() {
 
-    // useReducer работает почти как useState
-    // Только удобно когда изменений много
+    // useReducer похож на useState,
+    // но изменение состояния происходит через reducer
 
     const [cart, dispatch] = useReducer(
 
-        // Reducer который будет менять корзину
+        // Reducer решает как менять корзину
         cartReducer,
 
-        // Начальное значение если localStorage пустой
+        // Если localStorage пустой,
+        // начальное значение будет пустой массив
         [],
 
-        // Эта функция выполняется только один раз при запуске сайта
+        // Эта функция выполняется только один раз
+        // когда приложение запускается
         () => {
 
-            // Берёт сохранённую корзину
+            // Пытаемся получить корзину из localStorage
             const savedCart = localStorage.getItem("cart");
 
-            // Если корзина есть переводим JSON обратно в массив
-            // Если нет возвращаем пустой массив
-            return savedCart ? JSON.parse(savedCart) : [];
+            // Если корзина есть,
+            // JSON.parse превращает строку обратно в массив
+            // Если нет - возвращаем пустой массив
+            return savedCart
+                ? JSON.parse(savedCart)
+                : [];
         }
     );
 
-    // Каждый раз когда корзина меняется
-    // сохраняем её в localStorage
+    // Каждый раз когда cart изменяется,
+    // автоматически сохраняем её в localStorage
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
 
-    // Функция добавления товара
+        // stringify превращает массив в строку,
+        // потому что localStorage хранит только строки
+        localStorage.setItem(
+            "cart",
+            JSON.stringify(cart)
+        );
+
+    }, [cart]); // Выполнить только когда cart изменился
+
     function Add(product) {
 
-        // Отправляет reducer действие add
+        // dispatch отправляет reducer действие add
+        // product - товар который нужно добавить
         dispatch({
             type: "add",
             product,
         });
     }
 
-    // Функция удаления товара
     function Del() {
 
-        // Отправляет reducer действие delete
+        // product здесь не нужен,
+        // потому что удаляется просто последний товар
         dispatch({
             type: "delete",
         });

@@ -44,11 +44,8 @@ const movies = [
         image: "PhotoMini/9mini.jpg",
         link: "https://apps.apple.com/us/story/id1451236544 "
     },
-    {
 
-        image: "PhotoMini/10mini.jpg",
-        link: "https://fitness.apple.com/ "
-    }
+
 ];
 export default function PhotoMini() {
     // Переманая с распорожения фото setIndex что менять число 3 начальное фото то есть 4(0-1 1-2 2-3 3-4)
@@ -94,7 +91,7 @@ export default function PhotoMini() {
                     className="track"
                     style={{
                         //Сдвигает массив на инедкс (от 0 до 9 ) * 250 + 125 px
-                        transform: `translateX(calc(50% - ${index * 250 + 125}px))`
+                        transform: `translateX(calc(50% - ${index * 275 + 125}px))`
                     }}
                 >
 
@@ -103,15 +100,10 @@ export default function PhotoMini() {
                         // Вот эта строке приминает array.map((элемент, индекс) => {})
                         // То есть movie это элемент то есть фото и ссылка
                         // А i это индекс
-                        movies.map((movie, i) => (
+                        movies.map((movie) => (
                             <div
-                                // Если индекс фото = i а i это фото которое сейчас показываеться
-                                // то className у неё card active и в css она выделяеться
-                                className={
-                                    i === index
-                                        ? "card active"
-                                        : "card"
-                                }
+
+                                className={"card active"}
                             >
                                 <a href={movie.link}>
                                     <img src={movie.image} alt={movie.title} />

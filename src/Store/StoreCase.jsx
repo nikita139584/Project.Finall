@@ -11,7 +11,7 @@ function Store({ add }) {
         setMessage("Товар добавлен в корзину");
         setShowModal(true);
 
-        setTimeout(() => {
+        setTimeout(function () {
             setShowModal(false);
         }, 2000);
     }
@@ -183,3 +183,8 @@ function Store({ add }) {
 }
 
 export default Store;
+
+
+
+
+

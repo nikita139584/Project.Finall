@@ -98,7 +98,7 @@ export default function Photo() {
                     className="track"
                     style={{
                         //Сдвигает массив на инедкс (от 0 до 8 ) * 900 + 450 px
-                        transform: `translateX(calc(50% - ${index * 900 + 450}px))`
+                        transform: `translateX(calc(50% - ${index * 900 + 490}px))`
                     }}
                 >
                     {
@@ -106,16 +106,8 @@ export default function Photo() {
                         // Вот эта строке приминает array.map((элемент, индекс) => {})
                         // То есть movie это элемент то есть фото и ссылка
                         // А i это индекс
-                        movies.map((movie, i) => (
-                            <div
-                                // Если индекс фото = i а i это фото которое сейчас показываеться
-                                // то className у неё card active и в css она выделяеться
-                                className={
-                                    i === index
-                                        ? "card active"
-                                        : "card"
-                                }
-                            >
+                        movies.map((movie, ) => (
+                            <div className={"card active"}>
                                 <a href={movie.link}>
                                     <img src={movie.image} alt={movie.title} />
                                 </a>

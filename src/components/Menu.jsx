@@ -21,10 +21,10 @@ function Menu() {
 
 
             <div className="header-icons">
-                <Link to="/form" className="icon-item" aria-label="Поиск">
+                <Link to="/form" className="icon-item" aria-label="Профиль">
                     <svg viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="7" />
-                        <line x1="16.5" y1="16.5" x2="21" y2="21" />
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/>
                     </svg>
                 </Link>
 

@@ -76,7 +76,7 @@ function Store({ add }) {
                 </div>
 
                 <div className="storeProducts-header">
-                    <h1>iPad</h1>
+                    <h1>Apple Watch</h1>
                     <h2>Все модели. Выберите свой.</h2>
                 </div>
             </div>
