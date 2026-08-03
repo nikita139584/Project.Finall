@@ -34,11 +34,11 @@ function Store({ add }) {
             price: 999
         },
         {
-            id: 11,
+            id: 36,
             image: "/PhotoIpad/Ipad2.png",
             h1: "iPad Air",
             h2: "Мощный. Яркий. Великолепный.",
-            price: 599
+            price: 749
         },
         {
             id: 12,

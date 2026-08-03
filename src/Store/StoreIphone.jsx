@@ -26,21 +26,21 @@ function Store({ add }) {
     ];
     const movies = [
         {
-            id: 14,
+            id: 30,
             image: "/PhotoIphone/Iphone1.jpg",
             h1: "iPhone 17 Pro",
             h2: "Полный профессионализм.",
             price: 1099,
         },
         {
-            id: 15,
+            id: 32,
             image: "/PhotoIphone/Iphone2.jpg",
             h1: "iPhone 17e",
             h2: "Всё необходимое. Невероятная производительность.",
             price: 599,
         },
         {
-            id: 16,
+            id: 38,
             image: "/PhotoIphone/Iphone3.jpg",
             h1: "iPhone 17",
             h2: "Яркий. Стильный. Невероятно мощный.",

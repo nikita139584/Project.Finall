@@ -26,18 +26,18 @@ function Store({ add }) {
     ];
     const movies = [
         {
-            id: 19,
+            id: 31,
             image: "/PhotoMac/Mac1.jpg",
-            h1: "MacBook Air",
+            h1: "MacBook Pro",
             h2: "Небесно-голубой.",
-            price: 999
+            price: 1199
         },
         {
-            id: 20,
+            id: 35,
             image: "/PhotoMac/Mac2.jpg",
             h1: "MacBook Air",
             h2: "Лёгкий. Быстрый. Готов к работе.",
-            price: 1199
+            price: 1299
         },
         {
             id: 21,

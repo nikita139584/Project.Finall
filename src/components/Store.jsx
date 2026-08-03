@@ -1,34 +1,18 @@
 import "/src/App.css";
 import { useState} from "react";
 import {Link} from "react-router-dom";
-
+import {Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 function Store({ add }) {
 
 // Состояние отвечает за показ модального окна
 // false - окно скрыто
 // true - окно отображается
-    const [showModal, setShowModal] = useState(false);
+
 
 // Состояние хранит текст, который будет показан в модальном окне
-    const [message, setMessage] = useState("");
 
 // Функция вызывается при нажатии кнопки "Добавить в корзину"
-    function handleAdd(movie) {
-
-        // Добавляем выбранный товар в корзину
-        add(movie);
-
-        // Устанавливаем текст сообщения
-        setMessage("Товар добавлен в корзину");
-
-        // Показываем модальное окно
-        setShowModal(true);
-
-        // Через 2 секунды автоматически скрываем окно
-        setTimeout(() => {
-            setShowModal(false);
-        }, 2000);
-    }
+    let [isOpen, setIsOpen] = useState(false)
     const movies = [
         { title: "Ноутбуки", image: "/PhotoStore/store1.png",Link: "/mac" },
         { title: "Планшеты", image: "/PhotoStore/store3.png",Link: "/iPad" },
@@ -41,17 +25,17 @@ function Store({ add }) {
     const movies2 = [
         {
             id: 30,
-            image: "PhotoCard/store2.1.jpg",
+            image: "/PhotoIphone/Iphone1.jpg",
             h1: "iPhone 17 Pro",
             h2: "Полный профессионализм.",
             price: 1099,
         },
         {
             id: 31,
-            image: "PhotoCard/store2.2.jpg",
-            h1: "MacBook Neo",
+            image: "/PhotoMac/Mac1.jpg",
+            h1: "MacBook Pro",
             h2: "Магия Mac по удивительно доступной цене.",
-            price: 699,
+            price: 1199,
         },
         {
             id: 32,
@@ -68,22 +52,15 @@ function Store({ add }) {
             price: 549,
         },
         {
-            id: 34,
-            image: "PhotoCard/store2.5.jpg",
-            h1: "MacBook Pro",
-            h2: "Теперь с M5, M5 Pro и M5 Max.",
-            price: 1999,
-        },
-        {
             id: 35,
-            image: "PhotoCard/store2.6.jpg",
+            image: "/PhotoMac/Mac2.jpg",
             h1: "MacBook Air",
             h2: "Теперь ещё мощнее благодаря M5.",
             price: 1299,
         },
         {
             id: 36,
-            image: "PhotoCard/store2.7.jpg",
+            image: "/PhotoIpad/Ipad2.png",
             h1: "iPad Air",
             h2: "Теперь ещё мощнее благодаря M4.",
             price: 749,
@@ -97,7 +74,7 @@ function Store({ add }) {
         },
         {
             id: 38,
-            image: "PhotoCard/store2.9.jpg",
+            image: "/PhotoIphone/Iphone3.jpg",
             h1: "iPhone 17",
             h2: "Невероятно яркий.",
             price: 799,
@@ -221,9 +198,15 @@ function Store({ add }) {
                                         <h2>{movie.h2}</h2>
                                         <p>{movie.price}$</p>
                                         <img src={movie.image} alt={movie.h1} />
-                                        <button  onClick={() =>handleAdd(movie)}>
+                                        <button
+                                            onClick={() => {
+                                                add(movie);
+                                                setIsOpen(true);
+                                            }}
+                                        >
                                             Добавить в корзину
                                         </button>
+
 
 
                                     </div>
@@ -237,16 +220,32 @@ function Store({ add }) {
                     →
                 </button>
             </div>
-            {showModal && (
+
+            <Dialog
+                open={isOpen}
+                onClose={() => setIsOpen(false)}
+            >
+                {/* Затемнение */}
+                <div className="modal-overlay" aria-hidden="true" />
+
+                {/* Центрирование окна */}
                 <div className="modal-overlay">
-                    <div className="modal">
-                        <h2>{message}</h2>
-                        <button onClick={() => setShowModal(false)}>
-                            Закрыть
-                        </button>
-                    </div>
+                    <DialogPanel className="modal">
+                        <DialogTitle>
+                            Товар добавлен в корзину
+                        </DialogTitle>
+
+                        <div>
+                            <button
+                                onClick={() => setIsOpen(false)}
+
+                            >
+                                Закрыть
+                            </button>
+                        </div>
+                    </DialogPanel>
                 </div>
-            )}
+            </Dialog>
         </div>
 
     );
