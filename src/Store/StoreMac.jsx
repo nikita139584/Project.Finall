@@ -45,7 +45,7 @@ function Store({ add }) {
         {
             id: 31,
             image: "/PhotoMac/Mac1.jpg",
-            h1: "MacBook Pro",
+            h1: "MacBook",
             h2: "Небесно-голубой.",
             price: 1199
         },

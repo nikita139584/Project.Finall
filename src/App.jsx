@@ -16,6 +16,7 @@ import Cart from "./components/Cart";
 
 
 // Главная страница
+//project2-7.vercel.app
 function Home() {
     return (
         <>
