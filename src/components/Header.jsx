@@ -126,10 +126,8 @@ function Header() {
                     <h2>Лучший способ заботиться о своём здоровье.</h2>
 
                     <div className="hero-buttons">
-                        <Link to="/Watch">
-                            <button className="hero-button-primary">
-                                Купить
-                            </button>
+                        <Link to="/Watch" className="hero-button-primary">
+                            Купить
                         </Link>
                     </div>
 
