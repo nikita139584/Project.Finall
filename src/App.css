@@ -413,7 +413,7 @@ h1 {
 
 
 /* ============================================================
-   BIG SLIDER (Photo.jsx / PhotoMini.jsx)
+
    ============================================================ */
 
 .slider {
@@ -442,7 +442,7 @@ h1 {
     will-change: transform;
 }
 
-/* big cards (Photo.jsx) */
+
 
 .slider:not(.mini) .card {
     flex: 0 0 900px;
@@ -483,7 +483,7 @@ h1 {
     z-index: 1;
 }
 
-/* mini carousel (PhotoMini.jsx) */
+
 
 .slider.mini {
     height: 220px;
@@ -1530,6 +1530,11 @@ h1 {
     align-items: center;
 
     z-index: 2000;
+
+    /* добавлено: чтобы форма не обрезалась сверху/снизу
+       на маленьких экранах, а прокручивалась */
+    overflow-y: auto;
+    padding: 40px 20px;
 }
 
 /* ===========================
@@ -1552,6 +1557,10 @@ h1 {
             0 25px 60px rgba(0,0,0,.18);
 
     animation: modalShow .25s ease;
+
+    /* добавлено: если форма выше экрана, чтобы был скролл внутри окна */
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 /* ===========================
@@ -1639,6 +1648,8 @@ h1 {
     outline: none;
 
     transition: .2s;
+
+    box-sizing: border-box; /* добавлено: чтобы поля не выходили за края */
 }
 
 .modal input:focus {
@@ -1714,38 +1725,7 @@ h1 {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
-}
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 1000;
-}
-
-.modal {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    text-align: center;
-    min-width: 300px;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,.3);
-}
-
-.modal button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-.Total-price {
+}.Total-price {
     order: -1; /* переносит элемент в начало */
     text-align: center;
     font-weight: 700;
@@ -2015,7 +1995,6 @@ h1 {
         min-height: 700px;
     }
 
-    /* Большой слайдер (Photo.jsx) */
     .slider:not(.mini) .card {
         flex: 0 0 600px;
         width: 600px;

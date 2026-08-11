@@ -4,15 +4,11 @@ import {Link} from "react-router-dom";
 import {Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 function Store({ add }) {
 
-// Состояние отвечает за показ модального окна
-// false - окно скрыто
-// true - окно отображается
-
-
-// Состояние хранит текст, который будет показан в модальном окне
-
-// Функция вызывается при нажатии кнопки "Добавить в корзину"
+    // isOpen хранит true/false — нужно ли показывать модальное окно.
+    // setIsOpen меняет это значение.
     let [isOpen, setIsOpen] = useState(false)
+    // Массив категорий магазина.
+    // Каждый объект содержит название, изображение и ссылку на страницу.
     const movies = [
         { title: "Ноутбуки", image: "/PhotoStore/store1.png",Link: "/mac" },
         { title: "Планшеты", image: "/PhotoStore/store3.png",Link: "/iPad" },
@@ -22,6 +18,8 @@ function Store({ add }) {
         { title: "Чехлы", image: "/PhotoStore/store10.png",Link: "/Case" },
     ];
 
+    // Массив товаров из раздела "Новинки".
+    // Каждый объект содержит id, изображение, название, описание и цену.
     const movies2 = [
         {
             id: 30,
@@ -113,26 +111,34 @@ function Store({ add }) {
         }
     ];
 
-    // Первый слайдер
-
-
-    // Второй слайдер
+    // index2 хранит номер текущей позиции второго слайдера.
+    // Начинаем с нулевой позиции.
     const [index2, setIndex2] = useState(0);
 
+    // next2 переводит слайдер на следующую позицию.
     function next2() {
         setIndex2(prev => {
+
+            // Если дошли до последней позиции,
+            // возвращаемся в начало.
             if (prev === movies2.length - 4) {
                 return 0;
             }
+
             return prev + 1;
         });
     }
 
+    // prev2 переводит слайдер на предыдущую позицию.
     function prev2() {
         setIndex2(prev => {
+
+            // Если уже в начале,
+            // возвращаемся в конец слайдера.
             if (prev === 0) {
-                return movies2.length -4;
+                return movies2.length - 4;
             }
+
             return prev - 1;
         });
     }
@@ -149,13 +155,19 @@ function Store({ add }) {
                 <div className="window-Store">
                     <div className="track-Store">
 
+                        {/* map проходит по каждому объекту movies
+                            и создаёт карточку категории.
+                            Link нужен для перехода на другую страницу React.
+                            to берётся из свойства Link текущего объекта. */}
                         {movies.map((movie) => (
-                            //Тут Link нужен для перехода на другой сайт через параметр массива title
                             <Link key={movie.title} to={movie.Link}>
                                 <div className="card-Store">
 
 
+                                    {/* Показываем изображение текущей категории. */}
                                     <img src={movie.image} alt={movie.title} />
+
+                                    {/* Показываем название категории. */}
                                     <h3>{movie.title}</h3>
 
                                 </div>
@@ -172,8 +184,9 @@ function Store({ add }) {
                 <p>Посмотрите, что нового прямо сейчас.</p>
             </div>
 
-            {/* Второй слайдер */}
+            {/* Второй слайдер с новинками. */}
             <div className="slider-Store">
+                {/* При клике вызываем функцию prev2. */}
                 <button className="arrow left-Store" onClick={prev2}>
                     ←
                 </button>
@@ -182,25 +195,32 @@ function Store({ add }) {
                     <div
                         className="track-Store"
                         style={{
+                            // Сдвигаем дорожку с карточками
+                            // в зависимости от текущего index2.
                             transform: `translateX(-${index2 * 320}px)`
                         }}
                     >
+                        {/* map проходит по каждому товару movies2
+                            и создаёт для него карточку. */}
                         {movies2.map((movie) => {
-                            //find Ищет 1 элемент который подходит под условие
-                            //item Это 1 элемент из массива cart
-                            //И условие что бы id из массива item =  id элемента из movie
-
 
                             return (
                                 <div key={movie.id} className="card-Store">
                                     <div className="card-Store-body">
                                         <h1>{movie.h1}</h1>
                                         <h2>{movie.h2}</h2>
+                                        {/* Показываем цену и изображение текущего товара. */}
                                         <p>{movie.price}$</p>
                                         <img src={movie.image} alt={movie.h1} />
+
+                                        {/* При нажатии добавляем текущий товар в корзину
+                                            и открываем модальное окно. */}
                                         <button
                                             onClick={() => {
+                                                // Передаём выбранный товар в add из App.jsx.
                                                 add(movie);
+
+                                                // Показываем модальное окно.
                                                 setIsOpen(true);
                                             }}
                                         >
@@ -216,11 +236,14 @@ function Store({ add }) {
                     </div>
                 </div>
 
+                {/* При клике вызываем функцию next2. */}
                 <button className="arrow right-Store" onClick={next2}>
                     →
                 </button>
             </div>
 
+            {/* Dialog — компонент модального окна из Headless UI.
+                open получает состояние окна, onClose его закрывает. */}
             <Dialog
                 open={isOpen}
                 onClose={() => setIsOpen(false)}
@@ -231,11 +254,13 @@ function Store({ add }) {
                 {/* Центрирование окна */}
                 <div className="modal-overlay">
                     <DialogPanel className="modal">
+                        {/* Заголовок модального окна. */}
                         <DialogTitle>
                             Товар добавлен в корзину
                         </DialogTitle>
 
                         <div>
+                            {/* Кнопка вручную закрывает модальное окно. */}
                             <button
                                 onClick={() => setIsOpen(false)}
 
