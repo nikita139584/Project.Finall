@@ -13,12 +13,14 @@ import Support from "/src/components/Support.jsx";
 import Watch from "/src/Store/StoreWatch.jsx";
 import AirPods from "/src/Store/StoreAirPods.jsx";
 import Cart from "./components/Cart";
+import Cockies from "./components/Cockies";
 
 
 // Главная страница
 function Home() {
     return (
         <>
+            <Cockies/>
             <Header />
         </>
     );
@@ -90,7 +92,7 @@ function App() {
     return (
         <>
             <Menu />
-
+            <Cockies/>
             <Routes>
 
                 {/* path="/" означает главную страницу сайта. */}
