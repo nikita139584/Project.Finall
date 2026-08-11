@@ -1,7 +1,7 @@
 
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import Form from "./Form/Form.jsx";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 import Store from "./components/Store";
@@ -110,7 +110,7 @@ function App() {
 
                 {/* Страница ноутбуков. */}
                 <Route path="/mac" element={<StoreMac add={Add} />} />
-
+                <Route path="/form" element={<Form />} />
                 {/* Страница планшетов. */}
                 <Route path="/iPad" element={<IPad add={Add} />} />
 
