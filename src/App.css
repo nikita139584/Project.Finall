@@ -228,6 +228,7 @@ h1 {
 }
 
 .hero-ipad .hero-image {
+    pointer-events: none;
     transform: scale(1.18);
 }
 .hero-mac .hero-image {

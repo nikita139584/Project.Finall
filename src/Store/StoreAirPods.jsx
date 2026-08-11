@@ -49,7 +49,7 @@ function Store({ add }) {
             image: "/PhotoAirPods/airpods1.png",
             h1: "AirPods Max",
             h2: "Новые интеллектуальные функции. Ещё более глубокое погружение в звук.",
-            price: 549
+            price: 499
         },
         {
             id: 2,
